@@ -60,13 +60,13 @@ def process_data():
     image = tf.cast(image, tf.float32)
     image = image / 255.0
     
-    iamges_batch = tf.train.shuffle_batch(
+    images_batch = tf.train.shuffle_batch(
                                     [image], batch_size = BATCH_SIZE,
                                     num_threads = 4, capacity = 200 + 3* BATCH_SIZE,
                                     min_after_dequeue = 200)
     num_images = len(images)
 
-    return iamges_batch, num_images
+    return images_batch, num_images
 
 def generator(input, random_dim, is_train, reuse=False):
     c4, c8, c16, c32 = 128, 64, 32, 16 # channel num
