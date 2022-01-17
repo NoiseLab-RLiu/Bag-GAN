@@ -20,9 +20,9 @@ class ResBlock(tnn.Module):
                      tnn.Conv2d(size, size, 3),
                      tnn.InstanceNorm2d(size),
                      tnn.ReLU(True),
-                     tnn.ReflectionPad2d(1),
-                     tnn.Conv2d(size, size, 3),
-                     tnn.InstanceNorm2d(size)]
+#                      tnn.ReflectionPad2d(1),
+#                      tnn.Conv2d(size, size, 3),
+#                      tnn.InstanceNorm2d(size)]
         
         self.model = tnn.Sequential(*res_model)
         
@@ -51,7 +51,7 @@ class ResBlock(tnn.Module):
 class Generator(tnn.Module):
     
     #Constructor
-    def __init__(self, im_in_channels, im_out_channels, img_dim, num_filt=64):
+    def __init__(self, im_in_channels, im_out_channels, img_dim, num_filt=32):
         super(Generator, self).__init__()
         
         #Assign the number of residual blocks
@@ -67,7 +67,7 @@ class Generator(tnn.Module):
                      tnn.ReLU(True)]
         
         #Downsample
-        in_feat = 64
+        in_feat = 32
         out_feat = in_feat*2;
         for i in range(2):
             gen_model += [tnn.Conv2d(in_feat, out_feat, 3, stride=2, padding=1),
