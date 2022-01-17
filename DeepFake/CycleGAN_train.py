@@ -125,13 +125,13 @@ Dy.apply(net.conv_norm_weights);
 #simplified version has no pooling, paper does not, paper code does...
 # REMOVE
 
-gan_opt = torch.optim.Adam(itertools.chain(G.parameters(), F.parameters()),
+gan_opt = torch.optim.RMSprop(itertools.chain(G.parameters(), F.parameters()),
                            lr = LEARNING_RATE)
-dx_opt = torch.optim.Adam(Dx.parameters(), lr = LEARNING_RATE)
-dy_opt = torch.optim.Adam(Dy.parameters(), lr = LEARNING_RATE)
+dx_opt = torch.optim.RMSprop(Dx.parameters(), lr = LEARNING_RATE)
+dy_opt = torch.optim.RMSprop(Dy.parameters(), lr = LEARNING_RATE)
 
 
-# The paper uses Adam optimizer with a learning rate of 0.0002 for the first 100 epochs that linearly decays to 0 over the next 100 epochs.
+# The paper uses RMSprop optimizer with a learning rate of 0.0002 for the first 100 epochs that linearly decays to 0 over the next 100 epochs.
 
 # <h3> Initialize training variables </h3>
 
