@@ -19,7 +19,10 @@ class ResBlock(tnn.Module):
         res_model = [tnn.ReflectionPad2d(1),
                      tnn.Conv2d(size, size, 3),
                      tnn.InstanceNorm2d(size),
-                     tnn.ReLU(True)]
+                     tnn.ReLU(True),
+                     tnn.ReflectionPad2d(1),
+                     tnn.Conv2d(size, size, 3),
+                     tnn.InstanceNorm2d(size)]
         
         self.model = tnn.Sequential(*res_model)
         
