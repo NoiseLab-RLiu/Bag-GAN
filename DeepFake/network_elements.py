@@ -99,7 +99,6 @@ class Generator(tnn.Module):
         return self.model(x)
         
     
-#Discriminator different than CycleGAN model
 class Discriminator(tnn.Module):
     def __init__(self, im_in_channels):
         super(Discriminator, self).__init__()
